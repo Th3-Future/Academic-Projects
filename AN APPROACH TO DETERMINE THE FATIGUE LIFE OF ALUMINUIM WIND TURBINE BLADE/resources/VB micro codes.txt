@@ -1,0 +1,14 @@
+Option Explicit
+
+Sub MergeSameCells()
+Application.DisplayAlerts = False
+Dim rng As Range
+Mergecells:
+For Each rng In Selection
+    If Round(rng.Value, 1) = Round(rng.Offset(1, 0).Value, 1) And rng.Value <> "" Then
+        Range(rng.Offset(0, -1), rng.Offset(1, -1)).Merge
+        Range(rng, rng.Offset(1, 0)).Merge
+        GoTo Mergecells
+     End If
+Next
+End Sub
