@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?><project>
+	<version>1.0</version>
+	<configs>
+		<config default="true" name="Configuration1" category="opl">
+			<ref name="Assignment2Q1.mod" type="model">
+			</ref>
+		</config>
+		<config default="false" name="Configuration2" category="opl">
+			<ref name="Assignment2Q2.mod" type="model">
+			</ref>
+		</config>
+		<config default="false" name="Configuration3" category="opl">
+			<ref name="Assignment2Q3.mod" type="model">
+			</ref>
+		</config>
+	</configs>
+	
+</project>
