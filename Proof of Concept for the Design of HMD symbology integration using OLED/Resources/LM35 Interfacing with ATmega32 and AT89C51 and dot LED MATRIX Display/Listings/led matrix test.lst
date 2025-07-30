@@ -1,0 +1,27 @@
+C51 COMPILER V9.56.0.0   LED_MATRIX_TEST                                                   01/17/2018 00:51:42 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE LED_MATRIX_TEST
+OBJECT MODULE PLACED IN .\Objects\led matrix test.obj
+COMPILER INVOKED BY: D:\Program Files\Keil_v5\C51\BIN\C51.EXE led matrix test.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXT
+                    -END PRINT(.\Listings\led matrix test.lst) TABS(2) OBJECT(.\Objects\led matrix test.obj)
+
+line level    source
+
+   1          #include<reg51.he>
+*** WARNING C318 IN LINE 1 OF led matrix test.c: can't open file 'reg51.he'
+   2          sbit r1=P2
+   3          sbit c1=P3
+*** ERROR C202 IN LINE 3 OF led matrix test.c: 'P2': undefined identifier
+*** ERROR C141 IN LINE 3 OF led matrix test.c: syntax error near 'sbit', expected ';'
+   4          void main()
+*** ERROR C202 IN LINE 4 OF led matrix test.c: 'P3': undefined identifier
+*** ERROR C141 IN LINE 4 OF led matrix test.c: syntax error near 'void', expected ';'
+   5          {
+   6   1        r1=0X02;
+*** ERROR C202 IN LINE 6 OF led matrix test.c: 'r1': undefined identifier
+   7   1        c1=0XC7;
+*** ERROR C202 IN LINE 7 OF led matrix test.c: 'c1': undefined identifier
+   8   1      } 
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  6 ERROR(S)

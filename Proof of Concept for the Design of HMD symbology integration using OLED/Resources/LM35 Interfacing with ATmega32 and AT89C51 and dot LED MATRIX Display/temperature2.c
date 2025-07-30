@@ -1,0 +1,78 @@
+//**************************************************************//
+//Microcontroller			:ATmega32
+//System Clock				:1MHz 
+//Project					:LM35 Temperature Sensor Interfacing with ATmega32 and LED Display
+//Software					:AVR Studio 4 
+//Author					:Arun Kumar Garg 
+//							:ABLab Solutions
+//							:www.ablab.in
+//							:info@ablab.in
+//Date						:1st January 2012
+//**************************************************************//
+
+#include<avr/io.h>
+/*Includes io.h header file where all the Input/Output Registers and its Bits are defined for all AVR microcontrollers*/
+
+#define	F_CPU	1000000
+/*Defines a macro for the delay.h header file. F_CPU is the microcontroller frequency value for the delay.h header file. Default value of F_CPU in delay.h header file is 1000000(1MHz)*/
+
+#include<util/delay.h>
+/*Includes delay.h header file which defines two functions, _delay_ms (millisecond delay) and _delay_us (microsecond delay)*/
+
+/*ADC Function Declarations*/
+void adc_init(void);
+int read_adc_channel(unsigned char channel);
+
+int main(void)
+{
+	DDRB=0xff;
+	/*All the 8 pins of PortB are declared output (LED array is connected)*/
+
+	int adc_output,temperature;
+	/*Variable declarations*/
+
+	adc_init();
+	/*ADC initialization*/
+
+	/*Start of infinite loop*/
+	while(1)
+	{
+		adc_output=read_adc_channel(0);
+		/*Reading temperature sensor value*/ 
+
+		temperature=adc_output/2;
+		/*Temperature value in degree centigrade*/
+
+		PORTB=temperature;
+		/*Lower 8 bit of temperature is displayed in LED array*/
+
+		_delay_ms(500);
+		/*Display stays for 500ms*/
+
+		PORTB=temperature>>8;
+		/*Upper 2 bit of temperature is displayed in LED array*/
+
+		_delay_ms(500);
+		/*Display stays for 500ms*/
+	}
+}
+/*End of Program*/
+
+/*ADC Function Definitions*/
+void adc_init(void)
+{
+	ADCSRA=(1<<ADEN)|(1<<ADSC)|(1<<ADATE)|(1<<ADPS2);
+	SFIOR=0x00;
+}
+
+int read_adc_channel(unsigned char channel)
+{
+	int adc_value;
+	unsigned char temp;
+	ADMUX=(1<<REFS0)|channel;
+	_delay_ms(1);
+	temp=ADCL;
+	adc_value=ADCH;
+	adc_value=(adc_value<<8)|temp;
+	return adc_value;
+}

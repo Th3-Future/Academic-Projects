@@ -1,0 +1,3 @@
+".\Objects\LED testing.obj" 
+TO ".\Objects\LED testing" 
+PRINT(".\Listings\LED testing.m51") CODE( 0X0000-0X0FFF )
